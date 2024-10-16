@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const FeatureSection = () => {
   return (
-    <div className="bg-white mt-64">
+    <div className="bg-white mt-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
           <h1 className="text-5xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-7xl">
