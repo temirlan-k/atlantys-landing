@@ -39,7 +39,7 @@ const Header = () => {
           </Link>
           <Link
             href="/waitlist"
-            className="px-6 py-2 bg-green-500 text-white  rounded-lg hover:bg-green-600 transition duration-150 ease-in-out"
+            className="px-6 py-2  text-white  rounded-lg bg-emerald-500 transition duration-150 ease-in-out"
           >
             Join the waitlist
           </Link>
