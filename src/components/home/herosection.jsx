@@ -10,7 +10,7 @@ const HeroSection = () => {
           <h1 className="text-5xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-7xl">
             The future of hiring is <br /> here.
           </h1>
-          <p className="mt-2 text-sm leading-8 font-light  sm:mt-4">
+          <p className="mt-2 text-base leading-8 font-light  sm:mt-4">
             Screen hundreds of applicants in seconds, not hours. Generate enticing job ads <br />
             instantly. Remove human bias from your hiring. Source your dream candidates in <br />{' '}
             your sleep.
