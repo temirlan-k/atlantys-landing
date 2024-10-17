@@ -1,3 +1,4 @@
+import ChatBox from '@/components/chat/Chat';
 import ContactForm from '@/components/home/contact-form';
 import ExperiencePanel from '@/components/home/experience-panel';
 import FeatureSection from '@/components/home/feature-section';
@@ -14,6 +15,7 @@ export default function Home() {
       <ExperiencePanel />
       <PricingSection />
       <ContactForm />
+      <ChatBox />
     </div>
   );
 }

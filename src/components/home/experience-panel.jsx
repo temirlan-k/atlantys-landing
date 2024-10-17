@@ -3,26 +3,35 @@ import React from 'react';
 
 const StatsCard = ({ percentage, description, label }) => {
   return (
-    <div className="flex items-center bg-blue-500 text-white p-4 rounded-lg shadow-md">
-      <div className="mr-4">
-        <Image src={'https://randomuser.me/api/portraits/women/90.jpg'} alt='' width={150} height={150} />
+    <div
+      className="bg-gradient-to-bl w-1/3  bg-sub_color text-white p-6 rounded-xl shadow-lg"
+    >
+      <div className="flex justify-between items-center mb-4">
+        <p className="text-xl font-light">{description}</p>
+        <Image
+          src="https://randomuser.me/api/portraits/women/90.jpg"
+          alt=""
+          width={100}
+          height={100}
+          className="rounded-full"
+        />
       </div>
-      <div>
-        <p className="text-xl font-bold">{percentage}</p>
-        <p className="text-sm">{description}</p>
+      <div className="text-center">
+        <p className="text-[60px] font-bold mb-2">{percentage}</p>
       </div>
+      <p className="text-base font-light">к скорости реагирования на обратную связь от клиентов</p>
     </div>
   );
 };
 
 const ExperiencePanel = () => {
   return (
-    <div className="p-5 bg-gray-100">
-      <h2 className="text-3xl font-semibold mb-4">Вдохновитесь опытом наших клиентов</h2>
-      <div className="grid grid-cols-2 gap-4">
+    <div className="p-5 flex flex-col justify-center items-center mt-10 mb-10 ">
+      <h2 className="text-4xl font-bold text-main_color mb-6">Be inspired by the experience of our customers</h2>
+      <div className="flex gap-10 mt-5 justify-center">
         <StatsCard
           percentage="+60%"
-          description="Внедрение единой системы сервисных исследований к скорости реагирования на обратную связь от клиентов"
+          description="Внедрение единой системы сервисных исследований"
         />
         <StatsCard
           percentage="+15%"

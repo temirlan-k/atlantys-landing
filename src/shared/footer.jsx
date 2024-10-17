@@ -5,34 +5,50 @@ import { FaLinkedinIn } from 'react-icons/fa'; // Ensure you have react-icons in
 const Footer = () => {
   return (
     <footer className="text-black mt-20 py-5">
-      <div className="max-w-7xl mx-auto gap-5 px-4 flex flex-col  justify-between items-center">
+      <div className="max-w-7xl mx-auto gap-5 px-4 flex flex-col justify-between items-center">
         <div>
-          <Image src="/logo.svg" alt='' width={200} height={100}/>
+          <Image src="/logo.svg" alt="" width={200} height={100} />
         </div>
         <div className="flex flex-wrap justify-center md:justify-start gap-8 mb-4 md:mb-0">
-          <a href="/features" className="hover:text-gray-300">
+          <a
+            href="/features"
+            className="text-[#012D73] hover:text-gray-500 transition duration-150 ease-in-out"
+          >
             Features
           </a>
-          <a href="/demo" className="hover:text-gray-300">
+          <a
+            href="/demo"
+            className="text-[#012D73] hover:text-gray-500 transition duration-150 ease-in-out"
+          >
             Book a demo
           </a>
-          <a href="/contact" className="hover:text-gray-300">
+          <a
+            href="/contact"
+            className="text-[#012D73] hover:text-gray-500 transition duration-150 ease-in-out"
+          >
             Contact us
           </a>
-          <a href="/signup" className="hover:text-gray-300">
+          <a
+            href="/signup"
+            className="text-[#012D73] hover:text-gray-500 transition duration-150 ease-in-out"
+          >
             Sign Up
           </a>
-          <a href="/commitment" className="hover:text-gray-300">
+          <a
+            href="/commitment"
+            className="text-[#012D73] hover:text-gray-500 transition duration-150 ease-in-out"
+          >
             Our zero-bias commitment
           </a>
-          <a href="/privacy" className="hover:text-gray-300">
+          <a
+            href="/privacy"
+            className="text-[#012D73] hover:text-gray-500 transition duration-150 ease-in-out"
+          >
             Privacy & terms
           </a>
         </div>
         <div className="flex gap-2 items-center">
-          <a href="https://www.linkedin.com" className="text-white hover:text-gray-300">
-            <FaLinkedinIn size={24} className='bg-black ' />
-          </a>
+          <FaLinkedinIn size={24} className="bg-black" />
         </div>
         <div>
           <span className="text-gray-400 text-sm">

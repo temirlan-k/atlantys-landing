@@ -58,7 +58,7 @@ const PricingCards = () => {
         <button
           onClick={() => setIsAnnual(false)}
           className={`px-4 py-2 rounded-full ${
-            !isAnnual ? ' bg-emerald-500 text-white' : 'bg-gray-200 text-gray-800'
+            !isAnnual ? ' bg-sub_color text-white' : 'bg-gray-200 text-gray-800'
           }`}
         >
           Monthly
@@ -66,7 +66,7 @@ const PricingCards = () => {
         <button
           onClick={() => setIsAnnual(true)}
           className={`px-4 py-2 rounded-full ${
-            isAnnual ? 'bg-emerald-500 text-white' : 'bg-gray-200 text-gray-800'
+            isAnnual ? 'bg-sub_color text-white' : 'bg-gray-200 text-gray-800'
           }`}
         >
           Annually
@@ -90,7 +90,7 @@ const PricingCards = () => {
                 / {isAnnual ? 'year' : 'month'}
               </span>
             </div>
-            <button className="mt-6  bg-emerald-500 text-white py-2 rounded hover:bg-green-600 transition-colors">
+            <button className="mt-6  bg-sub_color text-white py-2 rounded transition-colors">
               Start saving money now
             </button>
             <ul className="flex-grow space-y-2 mt-5">

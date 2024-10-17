@@ -3,7 +3,7 @@ import React from 'react';
 const ContactForm = () => {
   return (
     <div className="bg-gradient-to-br  to-blue-50 p-8 rounded-3xl shadow-xl max-w-4xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800">
+      <h2 className="text-2xl font-semibold mb-6 text-main_color">
         Поможем выбрать подходящее решение
       </h2>
       <form className="space-y-4">
@@ -37,7 +37,7 @@ const ContactForm = () => {
         </div>
         <button
           type="submit"
-          className="bg-emerald-500  text-white font-bold py-2 px-4 rounded-lg transition-colors"
+          className=" bg-sub_color  text-white font-bold py-2 px-4 rounded-lg transition-colors"
         >
           Отправить
         </button>
