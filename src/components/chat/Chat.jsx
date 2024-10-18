@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const ChatInterface = () => {
   const [messages, setMessages] = useState([
@@ -7,15 +7,74 @@ const ChatInterface = () => {
   ]);
   const [showChat, setShowChat] = useState(false);
   const [inputText, setInputText] = useState('');
+  const [socket, setSocket] = useState(null);
+  const endOfMessagesRef = useRef(null);
+
+  const scrollToBottom = () => {
+    endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    // Create WebSocket connection
+    const socket = new WebSocket('wss://podcast-ai.onrender.com/ws/chat');
+    setSocket(socket);
+
+    // WebSocket connection established
+    socket.onopen = () => {
+      console.log('WebSocket connection established.');
+    };
+
+    // Listen for messages from the server
+    socket.onmessage = (event) => {
+      try {
+        const parsedData = JSON.parse(event.data); // First parse the event.data
+        if (parsedData && parsedData.data) {
+          // Update the message list directly with the bot response
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: parsedData.data, sender: 'bot' },
+          ]);
+        } else {
+          console.warn('No "data" field found in the response:', parsedData);
+        }
+      } catch (error) {
+        console.error('Error parsing WebSocket message:', error);
+      }
+    };
+
+    // Handle WebSocket errors
+    socket.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    // Handle WebSocket connection closure
+    socket.onclose = (event) => {
+      if (event.wasClean) {
+        console.log(`WebSocket closed cleanly, code=${event.code}, reason=${event.reason}`);
+      } else {
+        console.error('WebSocket connection closed unexpectedly.');
+      }
+    };
+
+    // Cleanup WebSocket connection when component unmounts
+    return () => {
+      socket.close();
+    };
+  }, []);
 
   const sendMessage = () => {
     if (!inputText.trim()) return;
     const newMessage = { text: inputText, sender: 'user' };
-    setMessages([...messages, newMessage]);
-    setInputText('');
-    setTimeout(() => {
-      setMessages((msgs) => [...msgs, { text: 'Thanks for your message!', sender: 'bot' }]);
-    }, 1000);
+    setMessages([...messages, newMessage]); // Add user's message to the chat
+
+    if (socket) {
+      socket.send(JSON.stringify({ message: inputText }));
+    }
+    setInputText(''); 
   };
 
   const handleInputChange = (event) => {
@@ -51,6 +110,7 @@ const ChatInterface = () => {
                 </div>
               </div>
             ))}
+            <div ref={endOfMessagesRef} />
           </div>
           <div className="flex items-center space-x-2">
             <input
