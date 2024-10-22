@@ -1,5 +1,5 @@
-'use client';
-import React, { useState, useRef, useEffect } from 'react';
+'use client'
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 const ChatInterface = () => {
   const [messages, setMessages] = useState([
@@ -8,7 +8,11 @@ const ChatInterface = () => {
   const [showChat, setShowChat] = useState(false);
   const [inputText, setInputText] = useState('');
   const [socket, setSocket] = useState(null);
+  const [userMessageQueue, setUserMessageQueue] = useState([]); // Очередь сообщений от пользователя
   const endOfMessagesRef = useRef(null);
+  const sendMessageTimeoutRef = useRef(null); // Таймер для отправки
+  const timerActive = useRef(false); // Флаг для предотвращения перезапуска таймера
+  const isRequestSentRef = useRef(false); // Флаг для предотвращения двойной отправки
 
   const scrollToBottom = () => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -19,21 +23,17 @@ const ChatInterface = () => {
   }, [messages]);
 
   useEffect(() => {
-    // Create WebSocket connection
     const socket = new WebSocket('wss://podcast-ai.onrender.com/ws/chat');
     setSocket(socket);
 
-    // WebSocket connection established
     socket.onopen = () => {
       console.log('WebSocket connection established.');
     };
 
-    // Listen for messages from the server
     socket.onmessage = (event) => {
       try {
-        const parsedData = JSON.parse(event.data); // First parse the event.data
+        const parsedData = JSON.parse(event.data);
         if (parsedData && parsedData.data) {
-          // Update the message list directly with the bot response
           setMessages((prevMessages) => [
             ...prevMessages,
             { text: parsedData.data, sender: 'bot' },
@@ -46,12 +46,10 @@ const ChatInterface = () => {
       }
     };
 
-    // Handle WebSocket errors
     socket.onerror = (error) => {
       console.error('WebSocket error:', error);
     };
 
-    // Handle WebSocket connection closure
     socket.onclose = (event) => {
       if (event.wasClean) {
         console.log(`WebSocket closed cleanly, code=${event.code}, reason=${event.reason}`);
@@ -60,21 +58,73 @@ const ChatInterface = () => {
       }
     };
 
-    // Cleanup WebSocket connection when component unmounts
     return () => {
       socket.close();
     };
   }, []);
 
-  const sendMessage = () => {
-    if (!inputText.trim()) return;
-    const newMessage = { text: inputText, sender: 'user' };
-    setMessages([...messages, newMessage]); // Add user's message to the chat
-
-    if (socket) {
-      socket.send(JSON.stringify({ message: inputText }));
+  // Мемоизированная функция с useCallback
+  const sendQueuedMessages = useCallback(() => {
+    if (isRequestSentRef.current) {
+      console.log('Запрос уже отправлен. Пропускаем отправку.');
+      return; // Если запрос уже был отправлен, выходим из функции
     }
-    setInputText(''); 
+
+    setUserMessageQueue((prevQueue) => {
+      if (!prevQueue.length) {
+        console.log('Очередь сообщений пуста. Ничего не отправляем.');
+        return prevQueue; // Возвращаем текущее состояние без изменений
+      }
+
+      const allMessages = prevQueue.map((item) => item.text).join(' ');
+      console.log('Отправляем все сообщения:', allMessages);
+
+      if (socket && !isRequestSentRef.current) {
+        socket.send(JSON.stringify({ message: allMessages }));
+        isRequestSentRef.current = true; // Устанавливаем флаг, что запрос отправлен
+      }
+
+      // Возвращаем пустую очередь после отправки
+      return [];
+    });
+
+    timerActive.current = false; // Сбрасываем флаг таймера после отправки
+
+    // Сброс флага для разрешения следующего запроса
+    setTimeout(() => {
+      isRequestSentRef.current = false; // Сбрасываем флаг после отправки
+      console.log('Флаг отправки сброшен, можно отправлять следующий запрос.');
+    }, 1000); // Сбросим через 1 секунду после отправки
+  }, [socket]);
+
+  const startMessageTimer = () => {
+    if (timerActive.current) return; // Если таймер уже запущен, не перезапускаем
+
+    timerActive.current = true; // Устанавливаем флаг, что таймер активен
+    console.log('Таймер запущен. Отправка через 10 секунд...');
+
+    sendMessageTimeoutRef.current = setTimeout(() => {
+      sendQueuedMessages(); // Отправляем сообщения через 10 секунд
+    }, 10000); // Запускаем таймер на 10 секунд
+  };
+
+  const sendMessage = () => {
+    if (!inputText.trim()) return; // Проверяем, что введено сообщение
+
+    const textMessage = { text: inputText, sender: 'user' };
+
+    // Добавляем сообщение в очередь
+    setUserMessageQueue((prevQueue) => [...prevQueue, textMessage]);
+    console.log('Добавлено сообщение в очередь:', textMessage);
+
+    // Добавляем сообщение в список сообщений для отображения
+    setMessages((prevMessages) => [...prevMessages, textMessage]);
+
+    // Очищаем поле ввода
+    setInputText('');
+
+    // Запускаем таймер, если он ещё не запущен
+    startMessageTimer();
   };
 
   const handleInputChange = (event) => {
@@ -85,6 +135,12 @@ const ChatInterface = () => {
     if (event.key === 'Enter') {
       sendMessage();
     }
+  };
+
+  const handleSendClick = () => {
+    sendMessage(); // Немедленно вызываем sendMessage при клике на кнопку "Send"
+    clearTimeout(sendMessageTimeoutRef.current); // Очищаем таймер, если пользователь нажал "Send"
+    sendQueuedMessages(); // Отправляем все сообщения
   };
 
   return (
@@ -121,7 +177,7 @@ const ChatInterface = () => {
               onChange={handleInputChange}
               onKeyPress={handleKeyPress}
             />
-            <button onClick={sendMessage} className="p-2 bg-blue-500 text-white rounded-full">
+            <button onClick={handleSendClick} className="p-2 bg-blue-500 text-white rounded-full">
               Send
             </button>
           </div>
