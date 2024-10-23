@@ -5,8 +5,8 @@ const pricingPlans = [
     id: 'startup',
     title: 'Startup',
     description: 'For smaller companies and startups, posting up to 2 jobs per month.',
-    priceMonthly: '£39',
-    priceAnnual: '£390', // Assuming 2 months free on annual payment
+    priceMonthly: '£0',
+    priceAnnual: '£0', // Assuming 2 months free on annual payment
     features: [
       'ATS access',
       'Chrome Extension access',
@@ -20,8 +20,8 @@ const pricingPlans = [
     id: 'unlimited',
     title: 'Unlimited',
     description: 'For larger companies or consultancies, posting multiple jobs per month.',
-    priceMonthly: '£99',
-    priceAnnual: '£990',
+    priceMonthly: '£0',
+    priceAnnual: '£0',
     features: [
       'ATS access',
       'Chrome Extension access',
@@ -37,8 +37,8 @@ const pricingPlans = [
     title: 'Hermes',
     description:
       'Hermes creates and posts your job across all your favourite job sites, sources candidates faster and more effectively than a human can, then ranks all the applicants.',
-    priceMonthly: '£399',
-    priceAnnual: '£3990',
+    priceMonthly: '£0',
+    priceAnnual: '£0',
     features: [
       'Everything in Unlimited',
       'Direct integration with calendar',

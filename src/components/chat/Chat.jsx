@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 const ChatInterface = () => {
@@ -9,10 +9,12 @@ const ChatInterface = () => {
   const [inputText, setInputText] = useState('');
   const [socket, setSocket] = useState(null);
   const [userMessageQueue, setUserMessageQueue] = useState([]); // Очередь сообщений от пользователя
+  const [showLoader, setShowLoader] = useState(false); // Флаг для отображения загрузки
   const endOfMessagesRef = useRef(null);
   const sendMessageTimeoutRef = useRef(null); // Таймер для отправки
   const timerActive = useRef(false); // Флаг для предотвращения перезапуска таймера
   const isRequestSentRef = useRef(false); // Флаг для предотвращения двойной отправки
+  const loaderTimeoutRef = useRef(null); // Таймер для отображения загрузчика
 
   const scrollToBottom = () => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -38,6 +40,7 @@ const ChatInterface = () => {
             ...prevMessages,
             { text: parsedData.data, sender: 'bot' },
           ]);
+          setShowLoader(false); // Убираем загрузку после получения ответа
         } else {
           console.warn('No "data" field found in the response:', parsedData);
         }
@@ -105,7 +108,15 @@ const ChatInterface = () => {
 
     sendMessageTimeoutRef.current = setTimeout(() => {
       sendQueuedMessages(); // Отправляем сообщения через 10 секунд
-    }, 10000); // Запускаем таймер на 10 секунд
+    }, 5000); // Запускаем таймер на 5 секунд
+  };
+
+  const startLoaderTimer = () => {
+    clearTimeout(loaderTimeoutRef.current); // Очищаем предыдущий таймер загрузки
+    setShowLoader(false); // Сбрасываем отображение загрузчика, если он был показан
+    loaderTimeoutRef.current = setTimeout(() => {
+      setShowLoader(true); // Показать загрузку через 2 секунды
+    }, 2000);
   };
 
   const sendMessage = () => {
@@ -122,6 +133,10 @@ const ChatInterface = () => {
 
     // Очищаем поле ввода
     setInputText('');
+
+    // Сбрасываем таймер загрузки и показываем новый таймер для нового сообщения
+    clearTimeout(loaderTimeoutRef.current);
+    startLoaderTimer(); // Запускаем таймер для загрузки при каждом новом сообщении
 
     // Запускаем таймер, если он ещё не запущен
     startMessageTimer();
@@ -140,13 +155,25 @@ const ChatInterface = () => {
   const handleSendClick = () => {
     sendMessage(); // Немедленно вызываем sendMessage при клике на кнопку "Send"
     clearTimeout(sendMessageTimeoutRef.current); // Очищаем таймер, если пользователь нажал "Send"
+    clearTimeout(loaderTimeoutRef.current); // Очищаем таймер загрузки при отправке
+    setShowLoader(false); // Скрыть загрузчик
     sendQueuedMessages(); // Отправляем все сообщения
+  };
+
+  const handleCloseChat = () => {
+    setShowChat(false);
   };
 
   return (
     <div>
       {showChat ? (
         <div className="p-4 fixed right-4 bottom-24 max-w-md w-full mx-auto bg-white rounded-lg shadow-lg">
+          <div className="flex justify-between mb-4">
+            <h2 className="font-bold">Chat</h2>
+            <button onClick={handleCloseChat} className="text-gray-500 hover:text-gray-700">
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
           <div className="h-80 overflow-y-auto mb-4">
             {messages.map((msg, index) => (
               <div
@@ -166,6 +193,11 @@ const ChatInterface = () => {
                 </div>
               </div>
             ))}
+            {showLoader && (
+              <div className="flex items-center justify-start">
+                <div className="p-2 bg-blue-500 text-white rounded-md">Typing...</div>
+              </div>
+            )}
             <div ref={endOfMessagesRef} />
           </div>
           <div className="flex items-center space-x-2">

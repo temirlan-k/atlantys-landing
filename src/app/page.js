@@ -1,4 +1,5 @@
 import ChatBox from '@/components/chat/Chat';
+import MyTextAnimation from '@/components/home/ai-assistent';
 import ContactForm from '@/components/home/contact-form';
 import ExperiencePanel from '@/components/home/experience-panel';
 import FeatureSection from '@/components/home/feature-section';
@@ -11,8 +12,8 @@ export default function Home() {
     <div>
       <HeroSection />
       <TestimonialsSwiper />
-      <FeatureSection />
-      <ExperiencePanel />
+      {/* <FeatureSection />
+      <ExperiencePanel /> */}
       <PricingSection />
       <ContactForm />
       <ChatBox />

@@ -1,78 +1,119 @@
 'use client';
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
-import 'swiper/css';
-
-
-const testimonials = [
+// Example array with random text and image URLs
+const data = [
   {
-    id: '1',
-    name: 'Катя',
-    username: 'agolubevakat',
-    description: 'Продала свой первый сайт за 200 евро во время обучения',
-    image: 'https://randomuser.me/api/portraits/women/68.jpg',
-  },
-  {
-    id: '2',
-    name: 'Элизабет',
-    username: 'elizulina',
+    title: 'бухгалтерии',
     description:
-      'Захватила несколько клиентов почти за 500 евро во время обучения, теперь работает в компании Саши',
-    image: 'https://randomuser.me/api/portraits/women/47.jpg',
+      'Support your customers and agents with our AI solutions, powered by Generative AI on voice and chat.',
+    bigPhoto: 'https://via.placeholder.com/300', // Placeholder image for big photo
+    smallPhoto: 'https://via.placeholder.com/150', // Placeholder image for small photo
   },
   {
-    id: '3',
-    name: 'Кристина',
-    username: 'kristya_iva',
-    description: "Устроилась на работу в 'оzоn' спустя 3 месяца после выпуска",
-    image: 'https://randomuser.me/api/portraits/women/90.jpg',
+    title: 'юриспруденции',
+    description:
+      'Boost your e-commerce business with AI-driven customer support that provides personalized experiences.',
+    bigPhoto: 'https://via.placeholder.com/300/0f0', // Another placeholder image
+    smallPhoto: 'https://via.placeholder.com/150/ff0',
   },
   {
-    id: '4',
-    name: 'Анна',
-    username: 'anna_nova',
-    description: 'Получила предложение работы сразу после выпуска',
-    image: 'https://randomuser.me/api/portraits/women/52.jpg',
+    title: 'образовании',
+    bigPhoto: 'https://via.placeholder.com/300/f00', // Another placeholder image
+    smallPhoto: 'https://via.placeholder.com/150/00f',
   },
   {
-    id: '5',
-    name: 'София',
-    username: 'sofia_don',
-    description: 'Работает в международной компании спустя 2 месяца после выпуска',
-    image: 'https://randomuser.me/api/portraits/women/23.jpg',
+    title: 'аналитике',
+    bigPhoto: 'https://via.placeholder.com/300/f00', // Another placeholder image
+    smallPhoto: 'https://via.placeholder.com/150/00f',
+  },
+  {
+    title: 'продажах',
+    bigPhoto: 'https://via.placeholder.com/300/f00', // Another placeholder image
+    smallPhoto: 'https://via.placeholder.com/150/00f',
+  },
+  {
+    title: 'маркетинге',
+    bigPhoto: 'https://via.placeholder.com/300/f00', // Another placeholder image
+    smallPhoto: 'https://via.placeholder.com/150/00f',
+  },
+  {
+    title: ' обслуживании клиентов',
+    bigPhoto: 'https://via.placeholder.com/300/f00', // Another placeholder image
+    smallPhoto: 'https://via.placeholder.com/150/00f',
+  },
+  {
+    title: 'рекрутинге',
+    bigPhoto: 'https://via.placeholder.com/300/f00', // Another placeholder image
+    smallPhoto: 'https://via.placeholder.com/150/00f',
   },
 ];
 
-const TestimonialsSwiper = () => {
+const AnimatedTelecomSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Cycle through the data array every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
+    }, 2000); // 2000ms = 2 seconds
+    return () => clearInterval(interval); // Clean up interval on component unmount
+  }, []);
+
+  const { title, description, bigPhoto, smallPhoto } = data[currentIndex];
+
   return (
-    <div className="mt-40 ">
-      <Swiper
-        navigation
-        pagination={{ clickable: true }}
-        slidesPerView={3}
-        spaceBetween={30}
-        effect="fade"
-        loop={true} 
+    <div className="flex flex-col md:flex-row justify-between items-center p-10">
+      {/* Text Section with Bottom to Top Animation */}
+      <motion.div
+        className="md:w-1/2 text-center md:text-left"
+        key={title} // Key to trigger Framer Motion re-animation
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 1 }}
       >
-        {testimonials.map((testimonial, index) => (
-          <SwiperSlide key={index}>
-            <div className="flex flex-col  items-center justify-center p-8  rounded-lg h-56 shadow- ">
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="h-24 rounded-full mb-4"
-              />
-              <p className="text-lg font-semibold">
-                {testimonial.name} (@{testimonial.username})
-              </p>
-              <p className="text-gray-600 text-center mt-2">{testimonial.description}</p>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <h1 className="text-3xl md:text-5xl font-bold mb-4">ИИ-ассистент {title}</h1>
+
+        {/* <div className="flex space-x-4 justify-center md:justify-start">
+          <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+            See a Demo
+          </button>
+          <button className="border border-blue-600 text-blue-600 py-2 px-4 rounded-lg hover:bg-blue-50">
+            Discover How
+          </button>
+        </div> */}
+      </motion.div>
+
+      {/* Image Section */}
+      <div className="relative md:w-1/2 flex justify-center">
+        {/* Big Photo with Right to Left Animation */}
+        <motion.img
+          src={bigPhoto}
+          alt="Big AI Agent"
+          className="w-80 h-80 object-cover rounded-lg"
+          key={bigPhoto} // Key to trigger re-animation
+          initial={{ opacity: 0, x: 200 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -200 }}
+          transition={{ duration: 1 }}
+        />
+
+        {/* Small Photo with Left to Right Animation */}
+        <motion.img
+          src={smallPhoto}
+          alt="Small AI Customer"
+          className="absolute top-10 left-10 w-40 h-40 object-cover rounded-lg"
+          key={smallPhoto} // Key to trigger re-animation
+          initial={{ opacity: 0, x: -200 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 200 }}
+          transition={{ duration: 1 }}
+        />
+      </div>
     </div>
   );
 };
 
-export default TestimonialsSwiper;
+export default AnimatedTelecomSection;
