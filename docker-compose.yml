@@ -11,8 +11,8 @@ services:
     image: nginx:alpine
     container_name: nginx
     ports:
-      - '8080:80' 
-      - '443:443' 
+      - '8080:80'  # Используем порт 8080 для HTTP
+      - '443:443'  # Порт 443 остается для HTTPS
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf 
       - ./nginx/certs:/etc/nginx/certs 
