@@ -2,14 +2,18 @@ version: '3'
 services:
   nextjs:
     build: .
-    container_name: nextjs
-  
+    container_name: atlantys-landing
+    ports:
+      - "3000:3000"  # Ensure Next.js runs on this port inside the container
+
   nginx:
     image: nginx:alpine
     container_name: nginx
     ports:
-      - "8080:80"
+      - "8080:80"   # Expose port 80 for HTTP (optional, can remove if you only want HTTPS)
+      - "8443:443"  # Expose port 443 for HTTPS
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf  # NGINX config file
+      - ./nginx/certs:/etc/nginx/certs      # SSL certificates directory
     depends_on:
       - nextjs
