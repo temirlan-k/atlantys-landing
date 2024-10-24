@@ -3,15 +3,13 @@ services:
   nextjs:
     build: .
     container_name: nextjs
-
+  
   nginx:
     image: nginx:alpine
     container_name: nginx
     ports:
-      - '3001:3001'
-      - '8443:443' # Expose HTTPS port
+      - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf # NGINX configuration
-      - /etc/letsencrypt:/etc/letsencrypt # Mount Let's Encrypt certs inside the container
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - nextjs
