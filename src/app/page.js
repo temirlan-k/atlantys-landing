@@ -10,10 +10,10 @@ import TestimonialsSwiper from '@/components/home/tesnomial-swiper';
 export default function Home() {
   return (
     <div>
-      <HeroSection />
+      {/* <HeroSection />
       <TestimonialsSwiper />
       <PricingSection />
-      <ContactForm />
+      <ContactForm /> */}
       <ChatBox />
     </div>
   );
