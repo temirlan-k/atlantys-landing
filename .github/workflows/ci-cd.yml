@@ -1,0 +1,40 @@
+name: Next.js CI/CD to VPS with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the application
+        run: npm run build
+
+      - name: Deploy to VPS with Docker Compose
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: almalinux
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 22
+          script: |
+            cd atlantys-landing
+
+            git pull origin main
+
+            docker compose down
+            docker compose up -d --build
