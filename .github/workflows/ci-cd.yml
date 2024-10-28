@@ -27,9 +27,6 @@ jobs:
       - name: Verify SSH Key Loaded and Deploy to VPS
         uses: appleboy/ssh-action@v0.1.5
         with:
-        debug:
-          description: 'enable debug mode'
-          default: false
           host: ${{ secrets.VPS_HOST }}
           username: almalinux
           key: ${{ secrets.VPS_SSH_KEY }}
