@@ -30,6 +30,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: almalinux
           key: ${{ secrets.VPS_SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 22
           script: |
             cd atlantys-landing
