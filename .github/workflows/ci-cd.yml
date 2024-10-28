@@ -23,7 +23,7 @@ jobs:
 
       - name: Build the application
         run: npm run build
-      
+
       - name: Verify SSH Key Loaded and Deploy to VPS
         uses: appleboy/ssh-action@v0.1.5
         with:
