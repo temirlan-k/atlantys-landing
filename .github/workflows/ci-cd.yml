@@ -30,7 +30,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: almalinux
           key: ${{ secrets.VPS_SSH_KEY }}
-          port:22
+          port: 22
           script: |
             # Check if SSH key is loaded (do not output the key itself)
             if [ -n "${{ secrets.VPS_SSH_KEY }}" ]; then
