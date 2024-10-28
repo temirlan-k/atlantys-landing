@@ -12,8 +12,6 @@ export default function Home() {
     <div>
       <HeroSection />
       <TestimonialsSwiper />
-      {/* <FeatureSection />
-      <ExperiencePanel /> */}
       <PricingSection />
       <ContactForm />
       <ChatBox />
