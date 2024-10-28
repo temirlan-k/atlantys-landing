@@ -31,21 +31,21 @@ jobs:
           username: almalinux
           key: ${{ secrets.VPS_SSH_KEY }}
           port: 22
-          # script: |
-          #   # Check if SSH key is loaded (do not output the key itself)
-          #   if [ -n "${{ secrets.VPS_SSH_KEY }}" ]; then
-          #     echo "VPS_SSH_KEY is loaded."
-          #   else
-          #     echo "VPS_SSH_KEY is not loaded. Please check the secret."
-          #     exit 1
-          #   fi
+          script: |
+            # Check if SSH key is loaded (do not output the key itself)
+            if [ -n "${{ secrets.VPS_SSH_KEY }}" ]; then
+              echo "VPS_SSH_KEY is loaded."
+            else
+              echo "VPS_SSH_KEY is not loaded. Please check the secret."
+              exit 1
+            fi
 
-          #   # Navigate to project directory
-          #   cd atlantys-landing
+            # # Navigate to project directory
+            # cd atlantys-landing
 
-          #   # Pull latest code
-          #   git pull origin main
+            # # Pull latest code
+            # git pull origin main
 
-          #   # Restart Docker Compose with the latest build
-          #   docker compose down
-          #   docker compose up -d --build
+            # # Restart Docker Compose with the latest build
+            # docker compose down
+            # docker compose up -d --build
