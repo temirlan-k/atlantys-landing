@@ -1,6 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body{
-  color: #012D73;
+body {
+  color: #012d73;
+}
+@font-face {
+  font-family: 'Kanit Cyrillic';
+  src: url('/fonts/Kanit-Cyrillic.otf') format('opentype');
+  font-weight: 400; /* Adjust weight if necessary */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mona Sans BlackWide';
+  src: url('/fonts/Mona-Sans-BlackWide.otf') format('opentype');
+
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gropled';
+  src: url('/fonts/Gropled-Bold.otf') format('opentype');
+  font-weight: 400; /* Adjust the weight if necessary */
+  font-style: normal;
+  font-display: swap;
 }

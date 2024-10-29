@@ -14,6 +14,12 @@ module.exports = {
         main_color: '#012D73',
         sub_color: '#F71D48',
       },
+      fontFamily: {
+        wix: ['var(--font-wix)'],
+        kanit: ['Kanit Cyrillic', 'sans-serif'],
+        monaBlackWide: ['Mona Sans BlackWide', 'sans-serif'],
+        gropled: ['Gropled', 'sans-serif'],
+      },
     },
   },
   plugins: [],
