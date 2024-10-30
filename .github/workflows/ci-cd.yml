@@ -1,28 +1,37 @@
-name: Build Check CI
+name: Next.js CI/CD to VPS with Docker
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build-check:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out the code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Updated to v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Specify the Node.js version you're using
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run Build
+      - name: Build the application
         run: npm run build
+
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: 195.49.212.234
+          username: almalinux
+          password: ${{ secrets.VPS_PASSWORD }}
+          port: 22
+          script: |
+            cd atlantys-landing
+            git pull origin main
+            docker compose down
+            docker compose up -d --build
