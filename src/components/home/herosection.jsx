@@ -9,7 +9,7 @@ const HeroSection = () => {
         <div className="lg:text-center">
           <h1 className="text-5xl tracking-tight font-bold sm:text-5xl md:text-7xl">
             <span className="text-sub_color">Управляй интеллектом</span> <br /> сокращай затраты,
-            <br/>  <span >ускоряй процессы</span>
+            <br /> <span>ускоряй процессы</span>
           </h1>
           <p className="mt-2 text-base leading-8 font-light font-monaBlackWide  text-main_color  sm:mt-4">
             Наши ИИ-решения идеально подходят для компаний, столкнувшихся с высокими затратами на{' '}

@@ -60,56 +60,61 @@ const AnimatedTelecomSection = () => {
   const { title, description, bigPhoto } = data[currentIndex];
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center p-10">
+    <div className="">
       {/* Text Section with Bottom to Top Animation */}
-      <motion.div
-        className="md:w-1/2 text-center md:text-left"
-        key={title} // Key to trigger Framer Motion re-animation
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 1 }}
-      >
-        <h1 className="text-3xl md:text-5xl font-bold mb-4">ИИ-ассистент {title}</h1>
 
-        {/* Description with animation */}
-        <motion.p
-          key={description}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 1 }}
-          className="text-lg md:text-xl"
-        >
-          {description}
-        </motion.p>
-      </motion.div>
+      <div className="flex items-center p-10 ">
+        <div>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 w-1/2">ИИ-ассистент</h1>
+          <motion.div
+            className="md:w-1/2 text-center md:text-left"
+            key={title} // Key to trigger Framer Motion re-animation
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 1 }}
+          >
+            <h1 className="text-3xl md:text-5xl font-bold mb-4">В {title}</h1>
 
-      {/* Image Section with Animated Background */}
-      <div className="relative md:w-1/2 flex justify-center">
-        {/* Animated Background Blue Div (Moving with Image) */}
-        <motion.div
-          className="absolute  w-3/4  h-full rounded-3xl bg-gradient-to-r"
-          initial={{ opacity: 0, x: 200 }}
-          animate={{ opacity: 0.3, x: 0 }}
-          exit={{ opacity: 0, x: -200 }}
-          transition={{ duration: 1 }}
-          style={{
-            backgroundImage: 'linear-gradient(180deg, #FFD700, #F6AE2D)',
-          }}
-        />
+            {/* Description with animation */}
+            <motion.p
+              key={description}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 1 }}
+              className="text-lg md:text-xl"
+            >
+              {description}
+            </motion.p>
+          </motion.div>
+        </div>
+        {/* Image Section with Animated Background */}
+        <div className="relative md:w-1/2 flex justify-center">
+          {/* Animated Background Blue Div (Moving with Image) */}
+          <motion.div
+            className="absolute  w-3/4  h-full rounded-3xl bg-gradient-to-r"
+            initial={{ opacity: 0, x: 200 }}
+            animate={{ opacity: 0.3, x: 0 }}
+            exit={{ opacity: 0, x: -200 }}
+            transition={{ duration: 1 }}
+            style={{
+              backgroundImage: 'linear-gradient(180deg, #FFD700, #F6AE2D)',
+            }}
+          />
 
-        {/* Big Photo with Right to Left Animation */}
-        <motion.img
-          src={bigPhoto}
-          alt="Big AI Agent"
-          className="w-80 mt-5 h-80 object-cover rounded-lg relative z-10" // Ensure the image is above the background
-          key={bigPhoto} // Key to trigger re-animation
-          initial={{ opacity: 0, x: 200 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -200 }}
-          transition={{ duration: 1 }}
-        />
+          {/* Big Photo with Right to Left Animation */}
+          <motion.img
+            src={bigPhoto}
+            alt="Big AI Agent"
+            className="w-80 mt-5 h-80 object-cover rounded-lg relative z-10" // Ensure the image is above the background
+            key={bigPhoto} // Key to trigger re-animation
+            initial={{ opacity: 0, x: 200 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -200 }}
+            transition={{ duration: 1 }}
+          />
+        </div>
       </div>
     </div>
   );

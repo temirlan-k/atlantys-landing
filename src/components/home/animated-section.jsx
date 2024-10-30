@@ -1,46 +1,58 @@
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-
+import Image from 'next/image';
 const icons = [
-  { id: 1, label: 'Pinecone' },
-  { id: 2, label: 'AltTable' },
-  { id: 3, label: 'OpenAI' },
-  { id: 4, label: 'Llama' },
-  { id: 5, label: 'Gigachat' },
-  { id: 6, label: 'Python' },
-  { id: 7, label: 'Yandex GPT' },
-  { id: 8, label: 'Qwen LLM' },
+  { id: 1, src: '/assets/icons/pinecone.svg', label: 'Pinecone', position: 'top-4 left-1/4' },
+  { id: 2, src: '/assets/icons/aitable.ai_.svg', label: 'Altable', position: 'top-4 right-1/4' },
+  { id: 3, src: '/assets/icons/python.png', label: 'Python', position: 'top-20 left-4' },
+  { id: 4, src: '/assets/icons/openai.png', label: 'OpenAI', position: 'top-1/4 right-4' },
+  { id: 5, src: '/assets/icons/gigachat.png', label: 'Gigachat', position: 'bottom-1/4 left-4' },
+  { id: 6, src: '/assets/icons/qwenllm.png', label: 'Qwen LLM', position: 'bottom-4 left-1/4' },
+  {
+    id: 7,
+    src: '/assets/icons/yandexgpt.png',
+    label: 'Yandex GPT',
+    position: 'bottom-4 right-1/4',
+  },
+  { id: 8, src: '/assets/icons/llama.png', label: 'Llama', position: 'bottom-20 right-4' },
 ];
 
-const AnimatedIconSection = () => {
+const TechStack = () => {
   return (
-    <div className="relative w-[400px] h-[400px] mx-auto bg-gradient-to-b from-[#0f0f0f] to-[#181818] rounded-full flex items-center justify-center">
-      {/* Central Icon with pulsing animation */}
-      <motion.div
-        className="absolute w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center text-white font-bold"
-        animate={{ scale: [1, 1.1, 1] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      >
-        Logo
-      </motion.div>
+    <div className="flex justify-center mb-10">
+      <div className="relative  border-2 rounded-3xl h-96 w-full max-w-3xl py-16 flex justify-center items-center">
+        <div className="absolute text-center px-4">
+          <p className="text-lg font-semibold leading-tight">
+            Каждый инструмент — шаг к оптимизации вашего бизнеса
+          </p>
+          <p className="text-sm text-gray-300 mt-2">
+            по середине с разных сторон иконки инструментов, стеков и интеграции
+          </p>
+        </div>
 
-      {/* Icons positioned around the central icon */}
-      {icons.map((icon, index) => (
-        <motion.div
-          key={icon.id}
-          className="absolute bg-white text-gray-800 text-center p-3 rounded-lg shadow-lg font-semibold text-sm"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: index * 0.1, duration: 0.5 }}
-          style={{
-            transform: `rotate(${index * (360 / icons.length)}deg) translate(150px) rotate(-${index * (360 / icons.length)}deg)`,
-          }}
-        >
-          {icon.label}
-        </motion.div>
-      ))}
+        {icons.map((icon) => (
+          <motion.div
+            key={icon.id}
+            className={`absolute ${icon.position} flex flex-col items-center`}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: icon.id * 0.1 }}
+            whileHover={{ scale: 1.1 }}
+          >
+            <Image
+              src={icon.src}
+              alt={icon.label}
+              width={50}
+              height={50}
+              className="  rounded-2xl bg-[#6F9CEB] p-2"
+            />
+            <p className=" text-sm">{icon.label}</p>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default AnimatedIconSection;
+export default TechStack;
