@@ -14,16 +14,16 @@ const HeroSection = () => {
           <p className="mt-2 text-base leading-8 font-light font-monaBlackWide  text-main_color  sm:mt-4">
             Наши ИИ-решения идеально подходят для компаний, столкнувшихся с высокими затратами на{' '}
             <br />
-            зарплаты, текучкой кадров и излишними рутинными процессами -{' '}
+            зарплаты, текучкой кадров и излишними рутинными процессами {' '}
             <span className="text-sub_color">
-              это приводит к <br /> потере клиентов
+              <br /> это приводит к потере клиентов
             </span>
           </p>
           <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-center">
             <div className="rounded-md shadow">
               <Link
                 href="/waitlist"
-                className="w-full flex items-center justify-center border border-transparent text-xs font-medium rounded-md text-white bg-sub_color p-3 "
+                className="w-full flex items-center justify-center border border-transparent text-xs font-medium rounded-md text-white hover:bg-[#F6AE2D] bg-[#021D73] p-3 "
               >
                 Join the waitlist
               </Link>

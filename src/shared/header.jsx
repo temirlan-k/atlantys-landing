@@ -4,44 +4,35 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#021D73] shadow-sm">
       <div className="container mx-auto flex justify-between items-center px-6">
         <div className="flex items-center gap-8">
-          <Image src="/logo.svg" alt="Company Logo" width={150} height={10} />
-          <div className="hidden md:flex gap-10 font-semibold text-sm">
+          <Image src="/logo.png" alt="Company Logo" width={150} height={10} />
+          <div className="hidden md:flex gap-20 font-semibold text-base">
             <Link
               href="/pricing"
-              className="text-[#012D73] hover:text-blue-500 transition duration-150 ease-in-out"
+              className="text-[#F6AE2D] hover:text-blue-500 transition duration-150 ease-in-out"
             >
-              Pricing
+              ИИ-ассистенты
             </Link>
             <Link
               href="/demo"
-              className="text-[#012D73] hover:text-blue-500 transition duration-150 ease-in-out"
+              className="text-[#F6AE2D] hover:text-blue-500 transition duration-150 ease-in-out"
             >
-              Book a demo
+              Кейсы
             </Link>
-            <Link
-              href="/contact"
-              className="text-[#012D73] hover:text-blue-500 transition duration-150 ease-in-out"
-            >
-              Contact
+            <Link href="/contact" className="text-[#F6AE2D]  transition duration-150 ease-in-out">
+              Цены
             </Link>
           </div>
         </div>
 
-        <div className="flex items-center gap-10">
-          <Link
-            href="/signin"
-            className="text-[#012D73] font-semibold text-sm hover:text-blue-500 transition duration-150 ease-in-out"
-          >
-            Sign In
-          </Link>
+        <div className="flex items-center gap-20">
           <Link
             href="/waitlist"
-            className="px-6 py-2 text-white rounded-lg bg-sub_color transition duration-150 ease-in-out"
+            className="px-6 py-2 text-white rounded-lg bg-[#F6AE2D] hover:bg-[#021D73] transition duration-150 ease-in-out"
           >
-            Join the waitlist
+            Попробовать
           </Link>
         </div>
       </div>

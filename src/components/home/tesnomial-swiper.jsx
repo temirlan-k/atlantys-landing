@@ -42,7 +42,7 @@ const data = [
   {
     title: 'рекрутинге',
     description: 'Автоматизирует процесс найма, анализирует резюме и помогает в подборе идеальных кандидатов.',
-    bigPhoto: '/assets/Маркетолог.png', // Replace with another existing image
+    bigPhoto: '/assets/рекрутер.png', // Replace with another existing image
   },
 ];
 
