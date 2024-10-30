@@ -43,7 +43,7 @@ const data = [
     title: 'рекрутинге',
     description:
       'Автоматизирует процесс найма, анализирует резюме и помогает в подборе идеальных кандидатов.',
-    bigPhoto: '/assets/Hr.png',
+    bigPhoto: '/assets/рекрутер.png',
   },
 ];
 
@@ -53,15 +53,15 @@ const AnimatedTelecomSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
-    }, 2000); // 2000ms = 2 seconds
-    return () => clearInterval(interval); // Clean up interval on component unmount
+    }, 2000);
+    return () => clearInterval(interval);
   }, []);
 
   const { title, description, bigPhoto } = data[currentIndex];
 
   return (
     <div className="">
-      {/* Text Section with Bottom to Top Animation */}
+ 
 
       <div className="flex items-center p-10 ">
         <div>
