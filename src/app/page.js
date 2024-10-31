@@ -14,8 +14,9 @@ export default function Home() {
   return (
     <React.Fragment>
       <HeroSection />
-      <AbilitySection />
       <VideoFrame />
+      <AbilitySection />
+
       <TestimonialsSwiper />
       <PricingSection />
       <AnimatedIconSection />
