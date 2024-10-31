@@ -5,7 +5,7 @@ import { Wix_Madefor_Display } from '@next/font/google';
 
 export const metadata = {
   title: 'Atlantys.kz',
-  description: 'Atlantys.kz helps to ',
+  description: 'ИИ-решения для упрощения бизнеса, автоматизация, оптимизация и снижение затрат ',
 };
 
 
