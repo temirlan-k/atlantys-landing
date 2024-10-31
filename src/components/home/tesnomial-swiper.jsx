@@ -61,13 +61,13 @@ const AnimatedTelecomSection = () => {
 
   return (
     <div className="p-10 flex items-center justify-center">
-      <div className="flex flex-col md:flex-row items-center w-full  space-y-6 md:space-y-0 md:space-x-10">
+      <div className="flex flex-col md:flex-row justify-center items-center w-full  space-y-6 md:space-y-0">
         {/* Left Section with Title and Description */}
-        <div className=" flex flex-col space-y-4">
+        <div className=" flex w-1/2 flex-col space-y-4">
           <div className="flex items-center space-x-3">
-            <h2 className="text-3xl  md:text-5xl font-bold">ИИ-ассистент</h2>
+            <h2 className="text-3xl  md:text- font-bold">ИИ-ассистент</h2>
             <motion.h1
-              className="text-3xl md:text-5xl font-bold"
+              className="text-3xl  font-bold"
               key={title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,11 +92,11 @@ const AnimatedTelecomSection = () => {
             href="/waitlist"
             className=" w-40  flex items-center justify-center border border-transparent text-xs font-medium rounded-md text-white hover:bg-[#F6AE2D] bg-[#021D73] p-3 "
           >
-           Подробнее
+            Подробнее
           </Link>
         </div>
 
-        <div className="relative md:w-1/2 flex justify-center">
+        <div className="relative p-4 flex justify-center">
           <motion.div
             className="absolute w-full h-full rounded-3xl bg-gradient-to-r"
             initial={{ opacity: 0, x: 200 }}

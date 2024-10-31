@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+
 const icons = [
   { id: 1, src: '/assets/icons/pinecone.svg', label: 'Pinecone', position: 'top-4 left-1/4' },
   { id: 2, src: '/assets/icons/aitable.ai_.svg', label: 'Altable', position: 'top-4 right-1/4' },
@@ -20,8 +21,10 @@ const icons = [
 
 const TechStack = () => {
   return (
-    <div className="flex justify-center mb-10">
-      <div className="relative  border-2 rounded-3xl h-96 w-full max-w-3xl py-16 flex justify-center items-center">
+    <div className="flex justify-center mb-10 relative">
+     
+
+      <div className="relative border-2 rounded-3xl h-96 w-full max-w-3xl py-16 flex justify-center items-center">
         <div className="absolute text-center px-4">
           <p className="text-lg font-semibold leading-tight">
             Каждый инструмент — шаг к оптимизации вашего бизнеса
@@ -45,9 +48,9 @@ const TechStack = () => {
               alt={icon.label}
               width={50}
               height={50}
-              className="  rounded-2xl bg-[#6F9CEB] p-2"
+              className="rounded-2xl bg-[#6F9CEB] p-2"
             />
-            <p className=" text-sm">{icon.label}</p>
+            <p className="text-sm">{icon.label}</p>
           </motion.div>
         ))}
       </div>
