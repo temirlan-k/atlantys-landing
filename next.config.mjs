@@ -1,9 +1,5 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: ['randomuser.me', 'trello.com'],
-  },
+module.exports = () => {
+  return {
+    output: 'export',
+  };
 };
-
-export default nextConfig;
