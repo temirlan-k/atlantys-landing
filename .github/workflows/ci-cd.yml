@@ -20,8 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build the application
-        run: npx next build --verbose
+      # - name: Build the application
+      #   run: npx next build --verbose
 
       - name: Deploy to VPS via SSH
         uses: appleboy/ssh-action@v0.1.5
