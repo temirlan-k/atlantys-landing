@@ -32,7 +32,6 @@ const pricingPlans = [
     ],
   },
 ];
-
 const PricingCards = () => {
   const [isAnnual, setIsAnnual] = useState(false);
 
