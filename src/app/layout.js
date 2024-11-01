@@ -15,7 +15,7 @@ const wix_madefor_display = Wix_Madefor_Display({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${wix_madefor_display.variable} font-wix`}>
-      <body >
+      <body>
         <Header />
         {children}
         <Footer />
