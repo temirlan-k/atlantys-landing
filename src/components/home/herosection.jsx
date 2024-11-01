@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
 const HeroSection = () => {
   return (
     <div className="bg-white mt-64">
