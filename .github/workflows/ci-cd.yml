@@ -32,10 +32,10 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: npx --no-install next build
 
-      - name: Build the application
-        run: npm run build
+      # - name: Build the application
+      #   run: n
 
       - name: Deploy to VPS via SSH
         uses: appleboy/ssh-action@v0.1.5
