@@ -1,42 +1,31 @@
-name: Next.js CI/CD to VPS with Docker
+name: CI/CD for Next.js
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out the code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: '18'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build the application
-        run: |
-          export NEXT_TELEMETRY_DISABLED=1
-          export NODE_OPTIONS="--max-old-space-size=4096"
-          npm run build
+      - name: Lint the code
+        run: npm run lint
 
-
-      - name: Deploy to VPS via SSH
-        uses: appleboy/ssh-action@v0.1.5
-        with:
-          host: 195.49.212.234
-          username: almalinux
-          password: ${{ secrets.VPS_PASSWORD }}
-          port: 22
-          script: |
-            cd atlantys-landing
-            git pull origin main
-            docker compose down
-            docker compose pull
-            docker compose up -d --build
+      - name: Build the project
+        run: npm run build
