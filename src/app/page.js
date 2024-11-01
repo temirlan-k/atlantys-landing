@@ -13,7 +13,7 @@ import VideoFrame from '@/components/home/video-frame';
 export default function Home() {
   return (
     <React.Fragment>
-      <HeroSection />
+      {/* <HeroSection /> */}
       <AbilitySection />
       <VideoFrame />
       <TestimonialsSwiper />
