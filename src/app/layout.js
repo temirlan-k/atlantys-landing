@@ -7,8 +7,6 @@ export const metadata = {
   title: 'Atlantys.kz',
   description: 'ИИ-решения для упрощения бизнеса, автоматизация, оптимизация и снижение затрат ',
 };
-
-
 const wix_madefor_display = Wix_Madefor_Display({
   subsets: ['latin'],
   variable: '--font-wix',
