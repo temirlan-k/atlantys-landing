@@ -1,6 +1,4 @@
-// components/VideoFrame.js
 import React from 'react';
-
 const VideoFrame = () => {
   return (
     <div className="flex justify-center items-center p-5">

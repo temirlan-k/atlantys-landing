@@ -5,5 +5,4 @@ const nextConfig = {
     domains: ['randomuser.me', 'trello.com'],
   },
 };
-
 export default nextConfig;

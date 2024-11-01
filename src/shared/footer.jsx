@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { FaLinkedinIn } from 'react-icons/fa'; // Ensure you have react-icons installed
+import { FaLinkedinIn } from 'react-icons/fa'; 
 
 const Footer = () => {
   return (

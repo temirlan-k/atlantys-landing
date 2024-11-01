@@ -1,13 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-
 const pricingPlans = [
   {
     id: 'startup',
     title: 'Анализ',
     description: 'For smaller companies and startups, posting up to 2 jobs per month.',
     priceMonthly: '£0',
-    priceAnnual: '£0', 
+    priceAnnual: '£0',
     features: [
       'ATS access',
       'Chrome Extension access',

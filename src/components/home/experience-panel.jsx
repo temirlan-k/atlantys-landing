@@ -3,9 +3,7 @@ import React from 'react';
 
 const StatsCard = ({ percentage, description, label }) => {
   return (
-    <div
-      className="bg-gradient-to-bl w-1/3  bg-sub_color text-white p-6 rounded-xl shadow-lg"
-    >
+    <div className="bg-gradient-to-bl w-1/3  bg-sub_color text-white p-6 rounded-xl shadow-lg">
       <div className="flex justify-between items-center mb-4">
         <p className="text-xl font-light">{description}</p>
         <Image
@@ -27,7 +25,9 @@ const StatsCard = ({ percentage, description, label }) => {
 const ExperiencePanel = () => {
   return (
     <div className="p-5 flex flex-col justify-center items-center mt-10 mb-10 ">
-      <h2 className="text-4xl font-bold text-main_color mb-6">Be inspired by the experience of our customers</h2>
+      <h2 className="text-4xl font-bold text-main_color mb-6">
+        Be inspired by the experience of our customers
+      </h2>
       <div className="flex gap-10 mt-5 justify-center">
         <StatsCard
           percentage="+60%"

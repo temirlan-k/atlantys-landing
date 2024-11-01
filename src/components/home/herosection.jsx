@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+
 import Link from 'next/link';
 
 const HeroSection = () => {
@@ -14,7 +14,7 @@ const HeroSection = () => {
           <p className="mt-2 text-base leading-8 font-light font-monaBlackWide  text-main_color  sm:mt-4">
             Наши ИИ-решения идеально подходят для компаний, столкнувшихся с высокими затратами на{' '}
             <br />
-            зарплаты, текучкой кадров и излишними рутинными процессами {' '}
+            зарплаты, текучкой кадров и излишними рутинными процессами{' '}
             <span className="text-sub_color">
               <br /> это приводит к потере клиентов
             </span>

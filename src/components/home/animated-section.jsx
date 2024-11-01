@@ -22,8 +22,6 @@ const icons = [
 const TechStack = () => {
   return (
     <div className="flex justify-center mb-10 relative">
-     
-
       <div className="relative border-2 rounded-3xl h-96 w-full max-w-3xl py-16 flex justify-center items-center">
         <div className="absolute text-center px-4">
           <p className="text-lg font-semibold leading-tight">

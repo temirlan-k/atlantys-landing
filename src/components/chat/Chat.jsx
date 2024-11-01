@@ -14,7 +14,7 @@ const ChatInterface = () => {
   const sendMessageTimeoutRef = useRef(null); // Таймер для отправки
   const timerActive = useRef(false); // Флаг для предотвращения перезапуска таймера
   const isRequestSentRef = useRef(false); // Флаг для предотвращения двойной отправки
-  const loaderTimeoutRef = useRef(null); // Таймер для отображения загрузчика
+  const loaderTimeoutRef = useRef(null); // 
 
   const scrollToBottom = () => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
