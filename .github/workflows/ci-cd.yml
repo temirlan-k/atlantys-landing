@@ -18,9 +18,11 @@ jobs:
           path: |
             ~/.npm
             .next/cache
+            node_modules
           key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-
+            ${{ runner.os }}-nextjs-
+            ${{ runner.os }}-
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -28,10 +30,14 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd atlantys-landing
+          npm install
 
       - name: Build the application
-        run: npm run build
+        run: |
+          cd atlantys-landing
+          npm run build
 
       - name: Deploy to VPS via SSH
         uses: appleboy/ssh-action@v0.1.5
@@ -44,4 +50,5 @@ jobs:
             cd atlantys-landing
             git pull origin main
             docker compose down
+            docker compose pull
             docker compose up -d --build
