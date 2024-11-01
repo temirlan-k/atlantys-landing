@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Build the application
-        run: npx --yes next build
+        run: npx next build --verbose
 
       - name: Deploy to VPS via SSH
         uses: appleboy/ssh-action@v0.1.5
