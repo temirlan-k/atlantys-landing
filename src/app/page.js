@@ -1,15 +1,11 @@
 import Image from "next/image";
-
+import React from 'react'
 export default function Home() {
   return (
 
     <React.Fragment>
-      {/* <HeroSection /> */}
-<<<<<<< HEAD
-      {/* <AbilitySection /> */}
-=======
       <AbilitySection />
->>>>>>> main
+
       <VideoFrame />
       <TestimonialsSwiper />
       <PricingSection />
