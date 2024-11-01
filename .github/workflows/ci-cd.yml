@@ -24,7 +24,7 @@ jobs:
         run: |
           export NEXT_TELEMETRY_DISABLED=1
           export NODE_OPTIONS="--max-old-space-size=4096"
-          npm run build --verbose
+          npm run build
 
 
       - name: Deploy to VPS via SSH
