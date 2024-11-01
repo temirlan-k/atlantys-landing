@@ -36,7 +36,7 @@ const ContactForm = () => {
         </div>
         <button
           type="submit"
-          className=" bg-sub_color  text-white font-bold py-2 px-4 rounded-lg transition-colors"
+          className=" bg-[#021D73]  text-white font-bold py-2 px-4 rounded-lg transition-colors"
         >
           Отправить
         </button>

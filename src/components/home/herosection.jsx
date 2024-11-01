@@ -11,7 +11,7 @@ const HeroSection = () => {
             <span className="text-sub_color">Управляй интеллектом</span> <br /> сокращай затраты,
             <br /> <span>ускоряй процессы</span>
           </h1>
-          <p className="mt-2 text-base leading-8 font-light font-monaBlackWide  text-main_color  sm:mt-4">
+          <p className="mt-2 tracking-tight  font-bold  text-base leading-8  font-monaBlackWide  text-main_color  sm:mt-4">
             Наши ИИ-решения идеально подходят для компаний, столкнувшихся с высокими затратами на{' '}
             <br />
             зарплаты, текучкой кадров и излишними рутинными процессами{' '}

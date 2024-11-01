@@ -53,8 +53,8 @@ const PricingCards = () => {
                 / {isAnnual ? 'year' : 'month'}
               </span>
             </div>
-            <button className="mt-6 bg-sub_color text-white py-2 rounded transition-colors">
-              Start saving money now
+            <button className="mt-6 bg-[#021D73] text-white  py-2  rounded transition-colors">
+              Начните экономить прямо сейчас
             </button>
             <ul className="flex-grow space-y-2 mt-5">
               {plan.features.map((feature, index) => (
