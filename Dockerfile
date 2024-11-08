@@ -7,8 +7,8 @@ WORKDIR /app
 # Копируем файлы с зависимостями
 COPY package*.json ./
 
-# Устанавливаем зависимости для продакшн
-RUN npm install --production
+# Устанавливаем все зависимости (убрали флаг --production)
+RUN npm install
 
 # Копируем все файлы приложения
 COPY . .
