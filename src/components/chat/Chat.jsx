@@ -34,7 +34,7 @@ const ChatInterface = () => {
 
     socket.onmessage = (event) => {
       try {
-        const parsedData = JSON.parse(event.data,'utf-8');
+        const parsedData = JSON.parse(event.data, 'utf-8');
 
         if (parsedData.sender && parsedData.message) {
           setMessages((prevMessages) => [
