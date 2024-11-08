@@ -25,7 +25,7 @@ const ChatInterface = () => {
   }, [messages]);
 
   useEffect(() => {
-    const socket = new WebSocket('wss://podcast-ai.onrender.com/ws/chat');
+    const socket = new WebSocket('wss://atlantys.kz/api/ws/chat');
     setSocket(socket);
 
     socket.onopen = () => {
@@ -35,14 +35,15 @@ const ChatInterface = () => {
     socket.onmessage = (event) => {
       try {
         const parsedData = JSON.parse(event.data);
-        if (parsedData && parsedData.data) {
+
+        if (parsedData.sender && parsedData.message) {
           setMessages((prevMessages) => [
             ...prevMessages,
-            { text: parsedData.data, sender: 'bot' },
+            { text: parsedData.message, sender: parsedData.sender },
           ]);
-          setShowLoader(false); // Убираем загрузку после получения ответа
+          setShowLoader(false);
         } else {
-          console.warn('No "data" field found in the response:', parsedData);
+          console.warn('Unexpected response format from server:', parsedData);
         }
       } catch (error) {
         console.error('Error parsing WebSocket message:', error);
@@ -66,6 +67,7 @@ const ChatInterface = () => {
     };
   }, []);
 
+
   // Мемоизированная функция с useCallback
   const sendQueuedMessages = useCallback(() => {
     if (isRequestSentRef.current) {
@@ -83,7 +85,7 @@ const ChatInterface = () => {
       console.log('Отправляем все сообщения:', allMessages);
 
       if (socket && !isRequestSentRef.current) {
-        socket.send(JSON.stringify({ message: allMessages }));
+        socket.send(JSON.stringify({ message: allMessages }), 'utf-8');
         isRequestSentRef.current = true; // Устанавливаем флаг, что запрос отправлен
       }
 
