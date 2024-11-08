@@ -1,23 +1,32 @@
-# Use Node.js 18.18.0 or a later version
-FROM node:18.18.0
+# Этап сборки
+FROM node:18.18.0-alpine AS build
 
-# Set the working directory
+# Установим рабочую директорию
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Копируем файлы с зависимостями
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Устанавливаем зависимости для продакшн
+RUN npm install --production
 
-# Copy the rest of your application files
+# Копируем все файлы приложения
 COPY . .
 
-# Build the application
+# Строим приложение
 RUN npm run build
 
-# Expose the port your app runs on
+# Этап выполнения
+FROM node:18.18.0-alpine
+
+# Установим рабочую директорию
+WORKDIR /app
+
+# Копируем только необходимые файлы из этапа сборки
+COPY --from=build /app ./
+
+# Открываем порт
 EXPOSE 3000
 
-# Start the application
+# Запускаем приложение
 CMD ["npm", "start"]
